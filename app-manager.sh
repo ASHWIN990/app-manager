@@ -3,18 +3,62 @@
 #Tool = app-manager
 #Version = 0.1
 #Author = ASHWINI SAHU
+#GitHub = ASHWIN990
 #Date = 10/07/2021
 #Written in Bash
 
 # Usage and Help Documentaion.
 function usage() {
-    echo "Help"
+    
+    cat << "EOF"
+
+[01;94mapp-manager [01;91m- [01;92mManage Android application in Linux (CLI)
+[0m
+USAGE :-
+      app-manager [options]
+
+OPTIONS :-
+      -s, --serial <Serial No.>   Pass the serial number of device.
+      -h, --help                  Print the Help message.[0m
+EOF
+}
+
+# Usage and Help Documentaion.
+function usage_full() {
+    
+    cat << "EOF"
+
+[01;94mapp-manager [01;91m- [01;92mManage Android application in Linux (CLI)
+[0m
+USAGE :-
+      app-manager [options]
+
+OPTIONS :-
+    -s, --serial <Serial No.>   Pass the serial number of device.
+    -h, --help                  Print the Help message
+
+Functions :-
+    1. Get Device Detail
+    2. Uninstall Application
+    3. Install Application 'apk'
+    4. Disable Application
+    5. Enable Application
+    6. List Applications (Multiple)
+        6.1. List All Application
+        6.2. List Enabled Application
+        6.3. List Disabled Application
+        6.4. List System Application
+        6.5. List Third Party Application[0m
+EOF
 }
 
 # Checking if help agrument is passed or not.
 for i in "$@"; do
-    if [[ $i == "-h" ]] || [[ $i == "--help" ]]; then
+    if [[ $i == "-h" ]]; then
         usage
+        exit 0
+    elif [[ $i == "--help" ]]; then
+        usage_full
         exit 0
     fi
 done
@@ -109,7 +153,7 @@ for ((i = 1; i <= $#; i++)); do
     j=$((i + 1))
 
     if [[ "${!i}" == "-s" ]] || [[ "${!i}" == "--serial" ]]; then
-        if [[ "${!j}" == "" ]]; then
+        if [[ -z "${!j}" ]]; then
             echo -e "\n\e[1;91mError : \e[0mNo Serial no. passed.\e[0m\n"
             echo -e "\e[32mUse\e[0m : -s <serial no> or --help\e[0m"
             exit 1
@@ -181,7 +225,7 @@ function option_2() {
 
     read -rp $'\e[1;93m\nEnter the package name to uninstall : \e[21;92m' uninstall_pkg
 
-    if [ "$uninstall_pkg" == "" ]; then
+    if [ -z "$uninstall_pkg" ]; then
         echo -e "\n\e[1;91mError : \e[0mNo package name was provided\e[0m"
         exit 1
     else
@@ -215,7 +259,7 @@ function option_3() {
 
     read -rp $'\e[1;93m\nEnter the path of the apk file : \e[21;92m' apk_file_paths
 
-    if [ "$apk_file_paths" = "" ]; then
+    if [ -z "$apk_file_paths" ]; then
         echo -e "\n\e[1;91mError : \e[0mNo apk was provided\e[0m"
         exit 1
     else
@@ -234,7 +278,7 @@ function option_3() {
 function option_4() {
 
     read -rp $'\e[1;93m\nEnter the package name to disable : \e[21;92m' disable_pkg
-    if [ "$disable_pkg" == "" ]; then
+    if [ -z "$disable_pkg" ]; then
         echo -e "\n\e[1;91mError : \e[0mNo package was provided\e[0m"
         exit 1
     else
@@ -254,7 +298,7 @@ function option_4() {
 function option_5() {
 
     read -rp $'\e[1;93m\nEnter the package name to enable : \e[21;92m' enable_pkg
-    if [ "$enable_pkg" == "" ]; then
+    if [ -z "$enable_pkg" ]; then
         echo -e "\n\e[1;91mError : \e[0mNo package was provided\e[0m"
         exit 1
     else
@@ -293,7 +337,8 @@ function list_application() {
         counter="1"
         while read -r line; do
             set "$line"
-            echo "[94m$counter [93m: [92m${1#*:}[0m" counter=$((counter + 1)) >>"$temp_file2"
+            echo "[94m$counter [93m: [92m${1#*:}[0m" >>"$temp_file2"
+            counter=$((counter + 1))
         done <"$temp_file1"
 
         $LESS -R "${temp_file2}" # Displaying all the apps
@@ -463,7 +508,7 @@ function list_application() {
             break
             ;;
         [Ee]*)
-            echo -e "\n\e[1;93mWarning : \e[0mExiting.....\n"
+            echo -e "\n\e[1;93mWarning : \e[0mExiting....."
             break
             exit 0
             ;;
@@ -522,7 +567,7 @@ function option_picker() {
             break
             ;;
         [Ee]*)
-            echo -e "\n\e[1;93mWarning : \e[0mExiting.....\n"
+            echo -e "\n\e[1;93mWarning : \e[0mExiting....."
             break
             exit 0
             ;;
