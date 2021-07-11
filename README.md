@@ -1,5 +1,6 @@
 <h1 align="center">app-manager</h1>
 
+
 <div align="center" markdown="1">
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -8,6 +9,7 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FASHWIN990%2Fapp-manager&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Hits&edge_flat=false)](https://ashwini.codes)
 
 </div>
+
 
 <h3 align="center">Manage Android application in GNU/Linux (CLI) 🖥️</h3>
 
@@ -18,7 +20,7 @@
 </p>
 
 
-## Funtions
+## Functions
 
 ```
 1. Get Device Detail
@@ -34,6 +36,7 @@
     6.4. List System Application
     6.5. List Third Party Application
 ```
+
 
 ## Installation
 
@@ -51,6 +54,7 @@ cd app-manager
 sudo chmod +x app-manager
 ```
 
+
 ## Usage
 
 ```bash
@@ -61,6 +65,15 @@ sudo chmod +x app-manager
 # or you can do
 
 bash app-manager
+```
+
+
+## Options
+
+```bash
+-s, --serial <Serial No.>   Pass the serial number of device.
+
+-h, --help                  Print the Help message.
 ```
 
 
