@@ -38,6 +38,12 @@
     6.5. List Third Party Application
 ```
 
+
+## Prerequisite
+
+* Install ```adb``` for your distro
+
+
 ## Installation
 
 **Arch linux** and **Arch based distro** (**_AUR_**)
