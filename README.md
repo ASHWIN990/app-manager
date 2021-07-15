@@ -43,6 +43,8 @@
 
 * Install ```adb``` for your distro
 
+Generally ```adb``` comes bundled with package ```android-tools``` 
+
 
 ## Installation
 
