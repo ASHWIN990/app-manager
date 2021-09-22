@@ -54,24 +54,24 @@ Generally ```adb``` comes bundled with package ```android-tools```
 
 **Normal Installation**
 
-```bash
-git clone https://github.com/ASHWIN990/app-manager.git
+```console
+foo@bar:~$ git clone https://github.com/ASHWIN990/app-manager.git
 
-cd app-manager
+foo@bar:~$ cd app-manager
 
-sudo chmod +x app-manager
+foo@bar:~$ chmod +x app-manager
 ```
 
 ## Usage
 
-```bash
-# Go to the directory where you cloned the app-manager repo
+```console
+#Go to the directory where you cloned the app-manager repo
 
-./app-manager
+foo@bar:~$ ./app-manager
 
-# or you can do
+#or you can do
 
-bash app-manager
+foo@bar:~$ bash app-manager
 ```
 
 ## Options
