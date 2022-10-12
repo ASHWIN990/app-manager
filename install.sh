@@ -25,27 +25,24 @@ function install() {
 
     if [ "$(command -v app-manager)" ]; then
 
-        message=$(echo -e "\napp-manager already installed in $(command -v app-manager)\nInstall it anyway : (y/N) ? : ")
+        message=$(echo -e "\napp-manager already installed in $(command -v app-manager)\nInstall it anyway : (Y/n) ? : ")
         read -rp "$message" yn
 
         case $yn in
-        [Yy]*)
-
-            if [ "$1" == "internet" ]; then
-                echo "Downloading the app-manager" && wget -q "https://raw.githubusercontent.com/ASHWIN990/app-manager/main/app-manager" 
-            fi
-
-            chmod +x "$PWD/app-manager"
-            cp "$PWD/app-manager" "$HOME/.local/bin/"
-            echo -e "\nInstallation done succesfully in $(command -v app-manager)"
-            ;;
-        *)
-            echo -e "Aborting the installation !"
+        [Nn]*)
+            echo -e "\nAborting the installation !"
             exit 0
             ;;
         esac
-
     fi
+
+    if [ "$1" == "internet" ]; then
+        echo "Downloading the app-manager" && wget -q "https://raw.githubusercontent.com/ASHWIN990/app-manager/main/app-manager"
+    fi
+
+    chmod +x "$PWD/app-manager"
+    cp "$PWD/app-manager" "$HOME/.local/bin/"
+    echo -e "\nInstallation done succesfully in $(command -v app-manager)"
 }
 
 if [ -e app-manager ]; then
