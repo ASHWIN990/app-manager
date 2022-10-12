@@ -7,7 +7,7 @@
 #Date = 12/10/2022
 #Written in Bash
 
-set -euxo pipefail
+set -euo pipefail
 
 function install() {
 
